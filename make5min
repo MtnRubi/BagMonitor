@@ -1,0 +1,44 @@
+DATE=`date "+%a %b %d %H\:%M %Z %Y"`
+
+/usr/local/bin/rrdtool graph temp5min.png --start -90000 \
+-a PNG \
+-w 250 -h 85 \
+DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099 \
+COMMENT:"Server Room Temp as of ${DATE}"
+
+/usr/local/bin/rrdtool graph temp5minbg.png --start -90000 \
+-a PNG \
+-t "Temperature in Degrees F" \
+DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"5 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/local/bin/rrdtool graph temp30min.png --start -604800 \
+-a PNG \
+-t "Temperature in Degrees F" \
+DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"30 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/local/bin/rrdtool graph tempweek.png --start -2851200 \
+-a PNG \
+-t "Temperature in Degrees F" \
+DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"2 Hour Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/local/bin/rrdtool graph tempmonth.png --start -31708800 \
+-a PNG \
+-t "Temperature in Degrees F" \
+DEF:maxtmp=1016734D0000004C.rrd:tmphi:MAX \
+DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+DEF:mintmp=1016734D0000004C.rrd:tmplow:MIN \
+AREA:maxtmp#00FFCC \
+AREA:mytmp#00FF00:"1 Day Average" \
+LINE2:mytmp#006600 \
+LINE2:mintmp#0000FF:"Daily Minimum" \
+LINE2:maxtmp#00CCFF:"Daily Maximum\l" \
+COMMENT:"Generated ${DATE}"
+
+cp *.png /export/www/scudder/images
