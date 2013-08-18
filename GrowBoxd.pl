@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 use strict;
 use RRDs;
@@ -17,9 +17,9 @@ my $sth = $dbh->prepare("insert into data (ts,device,min,avg,max) values (?,?,?,
 # No User servicanle parts below here.
 #
 
-#my $pid = fork;
-#exit if $pid;
-#die "No forky $!" unless defined($pid);
+my $pid = fork;
+exit if $pid;
+die "No forky $!" unless defined($pid);
 
 my $time2die = 0;
 my $rrdsecs;
