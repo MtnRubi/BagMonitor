@@ -1,39 +1,32 @@
 DATE=`date "+%a %b %d %H\:%M %Z %Y"`
 
-/usr/local/bin/rrdtool graph temp5min.png --start -90000 \
+/usr/bin/rrdtool graph humidity5minbg.png --start -90000 \
 -a PNG \
--w 250 -h 85 \
-DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
-LINE2:mytmp#000099 \
-COMMENT:"Server Room Temp as of ${DATE}"
-
-/usr/local/bin/rrdtool graph temp5minbg.png --start -90000 \
--a PNG \
--t "Temperature in Degrees F" \
-DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+-t "Percentage Humidity" \
+DEF:mytmp=humidity.rrd:tmpavg:AVERAGE \
 LINE2:mytmp#000099:"5 Minute Average\l" \
 COMMENT:"Generated ${DATE}"
 
-/usr/local/bin/rrdtool graph temp30min.png --start -604800 \
+/usr/bin/rrdtool graph humidity30min.png --start -604800 \
 -a PNG \
--t "Temperature in Degrees F" \
-DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+-t "Percentage Humidity" \
+DEF:mytmp=humidity.rrd:tmpavg:AVERAGE \
 LINE2:mytmp#000099:"30 Minute Average\l" \
 COMMENT:"Generated ${DATE}"
 
-/usr/local/bin/rrdtool graph tempweek.png --start -2851200 \
+/usr/bin/rrdtool graph humidityweek.png --start -2851200 \
 -a PNG \
--t "Temperature in Degrees F" \
-DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
+-t "Percentage Humidity" \
+DEF:mytmp=humidity.rrd:tmpavg:AVERAGE \
 LINE2:mytmp#000099:"2 Hour Average\l" \
 COMMENT:"Generated ${DATE}"
 
-/usr/local/bin/rrdtool graph tempmonth.png --start -31708800 \
+/usr/bin/rrdtool graph humiditymonth.png --start -31708800 \
 -a PNG \
--t "Temperature in Degrees F" \
-DEF:maxtmp=1016734D0000004C.rrd:tmphi:MAX \
-DEF:mytmp=1016734D0000004C.rrd:tmpavg:AVERAGE \
-DEF:mintmp=1016734D0000004C.rrd:tmplow:MIN \
+-t "Percentage Humidity" \
+DEF:maxtmp=humidity.rrd:tmphi:MAX \
+DEF:mytmp=humidity.rrd:tmpavg:AVERAGE \
+DEF:mintmp=humidity.rrd:tmplow:MIN \
 AREA:maxtmp#00FFCC \
 AREA:mytmp#00FF00:"1 Day Average" \
 LINE2:mytmp#006600 \
@@ -41,4 +34,174 @@ LINE2:mintmp#0000FF:"Daily Minimum" \
 LINE2:maxtmp#00CCFF:"Daily Maximum\l" \
 COMMENT:"Generated ${DATE}"
 
-cp *.png /export/www/scudder/images
+/usr/bin/rrdtool graph room5minbg.png --start -90000 \
+-a PNG \
+-t "Room Temperature (F)" \
+DEF:mytmp=room.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"5 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph room30min.png --start -604800 \
+-a PNG \
+-t "Room Temperature (F)" \
+DEF:mytmp=room.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"30 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph roomweek.png --start -2851200 \
+-a PNG \
+-t "Room Temperature (F)" \
+DEF:mytmp=room.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"2 Hour Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph roommonth.png --start -31708800 \
+-a PNG \
+-t "Room Temperature (F)" \
+DEF:maxtmp=room.rrd:tmphi:MAX \
+DEF:mytmp=room.rrd:tmpavg:AVERAGE \
+DEF:mintmp=room.rrd:tmplow:MIN \
+AREA:maxtmp#00FFCC \
+AREA:mytmp#00FF00:"1 Day Average" \
+LINE2:mytmp#006600 \
+LINE2:mintmp#0000FF:"Daily Minimum" \
+LINE2:maxtmp#00CCFF:"Daily Maximum\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph plant5minbg.png --start -90000 \
+-a PNG \
+-t "Plant Temperature (F)" \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"5 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph plant30min.png --start -604800 \
+-a PNG \
+-t "Plant Temperature (F)" \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"30 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph plantweek.png --start -2851200 \
+-a PNG \
+-t "Plant Temperature (F)" \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"2 Hour Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph plantmonth.png --start -31708800 \
+-a PNG \
+-t "Plant Temperature (F)" \
+DEF:maxtmp=plant.rrd:tmphi:MAX \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+DEF:mintmp=plant.rrd:tmplow:MIN \
+AREA:maxtmp#00FFCC \
+AREA:mytmp#00FF00:"1 Day Average" \
+LINE2:mytmp#006600 \
+LINE2:mintmp#0000FF:"Daily Minimum" \
+LINE2:maxtmp#00CCFF:"Daily Maximum\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph res5minbg.png --start -90000 \
+-a PNG \
+-t "Reservoir Temperature (F)" \
+DEF:mytmp=res.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"5 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph res30min.png --start -604800 \
+-a PNG \
+-t "Reservoir Temperature (F)" \
+DEF:mytmp=res.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"30 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph resweek.png --start -2851200 \
+-a PNG \
+-t "Reservoir Temperature (F)" \
+DEF:mytmp=res.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"2 Hour Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph resmonth.png --start -31708800 \
+-a PNG \
+-t "Reservoir Temperature (F)" \
+DEF:maxtmp=res.rrd:tmphi:MAX \
+DEF:mytmp=res.rrd:tmpavg:AVERAGE \
+DEF:mintmp=res.rrd:tmplow:MIN \
+AREA:maxtmp#00FFCC \
+AREA:mytmp#00FF00:"1 Day Average" \
+LINE2:mytmp#006600 \
+LINE2:mintmp#0000FF:"Daily Minimum" \
+LINE2:maxtmp#00CCFF:"Daily Maximum\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph light5minbg.png --start -90000 \
+-a PNG \
+-t "Room Light (Lumens?)" \
+DEF:mytmp=lumens.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"5 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph light30min.png --start -604800 \
+-a PNG \
+-t "Room Light (Lumens?)" \
+DEF:mytmp=lumens.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"30 Minute Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph lightweek.png --start -2851200 \
+-a PNG \
+-t "Room Light (Lumens?)" \
+DEF:mytmp=lumens.rrd:tmpavg:AVERAGE \
+LINE2:mytmp#000099:"2 Hour Average\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph lightmonth.png --start -31708800 \
+-a PNG \
+-t "Room Light (Lumens?)" \
+DEF:maxtmp=lumens.rrd:tmphi:MAX \
+DEF:mytmp=lumens.rrd:tmpavg:AVERAGE \
+DEF:mintmp=lumens.rrd:tmplow:MIN \
+AREA:maxtmp#00FFCC \
+AREA:mytmp#00FF00:"1 Day Average" \
+LINE2:mytmp#006600 \
+LINE2:mintmp#0000FF:"Daily Minimum" \
+LINE2:maxtmp#00CCFF:"Daily Maximum\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph tempsmonth.png --start -31708800 \
+-a PNG \
+-t "Average Temps (F)" \
+DEF:maxtmp=room.rrd:tmphi:AVERAGE \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+DEF:mintmp=res.rrd:tmplow:AVERAGE \
+LINE2:mytmp#006600:"Plant" \
+LINE2:mintmp#0000FF:"Reservoir" \
+LINE2:maxtmp#00CCFF:"Room\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph temps5minbg.png --start -90000 \
+-a PNG \
+-w 800 -h 500 \
+-t "Average Temps (F) 5 mins" \
+DEF:maxtmp=room.rrd:tmphi:AVERAGE \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+DEF:mintmp=res.rrd:tmplow:AVERAGE \
+DEF:humid=humidity.rrd:tmplow:AVERAGE \
+LINE2:humid#880088:"Humidity" \
+LINE2:mytmp#006600:"Plant" \
+LINE2:mintmp#0000FF:"Reservoir" \
+LINE2:maxtmp#00CCFF:"Room\l" \
+COMMENT:"Generated ${DATE}"
+
+/usr/bin/rrdtool graph temps30minbg.png --start -604800 \
+-a PNG \
+-t "Average Temps (F) 30 mins" \
+DEF:maxtmp=room.rrd:tmphi:AVERAGE \
+DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
+DEF:mintmp=res.rrd:tmplow:AVERAGE \
+LINE2:mytmp#006600:"Plant" \
+LINE2:mintmp#0000FF:"Reservoir" \
+LINE2:maxtmp#00CCFF:"Room\l" \
+COMMENT:"Generated ${DATE}"
