@@ -173,9 +173,9 @@ COMMENT:"Generated ${DATE}"
 /usr/bin/rrdtool graph tempsmonth.png --start -31708800 \
 -a PNG \
 -t "Average Temps (F)" \
-DEF:maxtmp=room.rrd:tmphi:AVERAGE \
+DEF:maxtmp=room.rrd:tmpavg:AVERAGE \
 DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
-DEF:mintmp=res.rrd:tmplow:AVERAGE \
+DEF:mintmp=res.rrd:tmpavg:AVERAGE \
 LINE2:mytmp#006600:"Plant" \
 LINE2:mintmp#0000FF:"Reservoir" \
 LINE2:maxtmp#00CCFF:"Room\l" \
@@ -185,10 +185,10 @@ COMMENT:"Generated ${DATE}"
 -a PNG \
 -w 800 -h 500 \
 -t "Average Temps (F) 5 mins" \
-DEF:maxtmp=room.rrd:tmphi:AVERAGE \
+DEF:maxtmp=room.rrd:tmpavg:AVERAGE \
 DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
-DEF:mintmp=res.rrd:tmplow:AVERAGE \
-DEF:humid=humidity.rrd:tmplow:AVERAGE \
+DEF:mintmp=res.rrd:tmpavg:AVERAGE \
+DEF:humid=humidity.rrd:tmpavg:AVERAGE \
 LINE2:humid#880088:"Humidity" \
 LINE2:mytmp#006600:"Plant" \
 LINE2:mintmp#0000FF:"Reservoir" \
@@ -198,9 +198,9 @@ COMMENT:"Generated ${DATE}"
 /usr/bin/rrdtool graph temps30minbg.png --start -604800 \
 -a PNG \
 -t "Average Temps (F) 30 mins" \
-DEF:maxtmp=room.rrd:tmphi:AVERAGE \
+DEF:maxtmp=room.rrd:tmpavg:AVERAGE \
 DEF:mytmp=plant.rrd:tmpavg:AVERAGE \
-DEF:mintmp=res.rrd:tmplow:AVERAGE \
+DEF:mintmp=res.rrd:tmpavg:AVERAGE \
 LINE2:mytmp#006600:"Plant" \
 LINE2:mintmp#0000FF:"Reservoir" \
 LINE2:maxtmp#00CCFF:"Room\l" \
