@@ -174,6 +174,12 @@ while(<TTY>) {
             }
             $sth->execute($ltime,$k,$min{$k},$avg{$k},$max{$k});
         }
+
+        #
+        # Ugly, but has implied knowledge for Thingspeak
+        #
+        `./postTS.py $avg{'room'} $avg{'res'} $avg{'plant'} $avg{'humidity'} $avg{'lumens'}`;
+
         %min = ();
         %max = ();
         %avg = ();
