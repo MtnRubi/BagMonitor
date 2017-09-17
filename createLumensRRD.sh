@@ -1,7 +1,7 @@
 rrdtool create lumens.rrd --start `cat rrdstart` \
-DS:tmplow:GAUGE:600:-10:5000 \
-DS:tmpavg:GAUGE:600:-10:5000 \
-DS:tmphi:GAUGE:600:-10:5000 \
+DS:tmplow:GAUGE:600:-10:8000 \
+DS:tmpavg:GAUGE:600:-10:8000 \
+DS:tmphi:GAUGE:600:-10:8000 \
 RRA:MIN:0.5:1:600 \
 RRA:MIN:0.5:6:700 \
 RRA:MIN:0.5:24:775 \
