@@ -179,6 +179,7 @@ while(<TTY>) {
         # Ugly, but has implied knowledge for Thingspeak
         #
         #`./postTS.py $avg{'room'} $avg{'res'} $avg{'plant'} $avg{'humidity'} $avg{'lumens'}`;
+        `./postTS.py $avg{'humidity'} $avg{'lumens'} $avg{'room'} $avg{'res'} $avg{'plant'}`;
 
         %min = ();
         %max = ();
