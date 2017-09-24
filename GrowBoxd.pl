@@ -6,6 +6,7 @@ use DBI;
 use Unix::Syslog qw(:subs);
 use Unix::Syslog qw(:macros);
 use Device::SerialPort;
+use Getopt::Long;
 
 
 # Database Details
@@ -16,10 +17,20 @@ my $sth = $dbh->prepare("insert into data (ts,device,min,avg,max) values (?,?,?,
 #
 # No User servicanle parts below here.
 #
+#
+# Options
+my $foreground = '';
 
-my $pid = fork;
-exit if $pid;
-die "No forky $!" unless defined($pid);
+GetOptions('foreground' => \$foreground);
+
+if($foreground) {
+	print "Running in foreground\n";
+} else {
+	print "Going daemon...\n";
+	my $pid = fork;
+	exit if $pid;
+	die "Nu forky $!" unless defined($pid);
+}
 
 my $time2die = 0;
 my $rrdsecs;
