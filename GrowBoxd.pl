@@ -20,8 +20,11 @@ my $sth = $dbh->prepare("insert into data (ts,device,min,avg,max) values (?,?,?,
 #
 # Options
 my $foreground = '';
+my $serialdev = '/dev/ttyACM0'; #Default Arduino device.
 
-GetOptions('foreground' => \$foreground);
+GetOptions('foreground' => \$foreground, 'device=s' => \$serialdev);
+
+print "Using device $serialdev\n";
 
 if($foreground) {
 	print "Running in foreground\n";
@@ -87,7 +90,7 @@ my %avg = ();
 my %count = ();
 my %accum = ();
 
-open(TTY,"ttylog -f -b 9600 -d /dev/ttyACM0 |") || die "Crap: $!\n";
+open(TTY,"ttylog -f -b 9600 -d $serialdev |") || die "Crap: $!\n";
 while(<TTY>) {
     exit if ($time2die);
 
