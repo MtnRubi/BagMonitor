@@ -5,7 +5,7 @@ import httplib
 import urllib
 
 def doit():
-    params = urllib.urlencode({'field1': sys.argv[1], 'field2': sys.argv[2], 'field3': sys.argv[3], 'field4': sys.argv[4],'field5': sys.argv[5], 'key':'1VM2S9Z7RJRH8M6A'})
+    params = urllib.urlencode({'field1': sys.argv[1], 'field2': sys.argv[2], 'field3': sys.argv[3], 'field4': sys.argv[4],'field5': sys.argv[5], 'key':''})
     headers = {"Content-type": "application/x-www-form-urlencoded","Accept":"text/plain"}
     conn = httplib.HTTPConnection("api.thingspeak.com")
     conn.request("POST","/update",params,headers)
