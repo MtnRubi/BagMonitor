@@ -17,9 +17,9 @@ my $file=File::Tail->new(name=>"/var/log/kern.log", maxinterval=>300);
 
 while(defined(my $line=$file->read)) {
 	print "$line";
-	if ($line =~ /ttyACM1/) {
-		print("Rebooting because ttyACM1\n");
-		syslog(LOG_NOTICE,"Rebooting because ttyACM1");
-		`reboot`;
+	if ($line =~ /USB disconnect/) {
+		print("Restarting GrowBag.pl because ttyACM1\n");
+		syslog(LOG_NOTICE,"Restarting GrowBag.pl because ttyACM1");
+		`killall ttylog`;
 	}
 }
