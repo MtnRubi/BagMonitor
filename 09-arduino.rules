@@ -1,0 +1,2 @@
+#Arduino
+SUBSYSTEMS=="usb", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341" SYMLINK+="arduino"

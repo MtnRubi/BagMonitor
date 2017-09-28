@@ -20,7 +20,7 @@ my $sth = $dbh->prepare("insert into data (ts,device,min,avg,max) values (?,?,?,
 #
 # Options
 my $foreground = '';
-my $serialdev = '/dev/ttyACM0'; #Default Arduino device.
+my $serialdev = '/dev/arduino'; #Default Arduino device.
 
 GetOptions('foreground' => \$foreground, 'device=s' => \$serialdev);
 
