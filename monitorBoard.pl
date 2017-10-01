@@ -16,7 +16,7 @@ syslog(LOG_NOTICE,"Starting cheesy board monitor");
 my $file=File::Tail->new(name=>"/var/log/kern.log", maxinterval=>300);
 
 while(defined(my $line=$file->read)) {
-	print "$line";
+	#print "$line";
 	if ($line =~ /USB disconnect/) {
 		print("Restarting GrowBag.pl because ttyACM1\n");
 		syslog(LOG_NOTICE,"Restarting GrowBag.pl because ttyACM1");
